@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : whs
-Source Server Version : 50505
-Source Host           : localhost:3306
+Source Server         : 47.107.53.75
+Source Server Version : 50553
+Source Host           : 47.107.53.75:3306
 Source Database       : teaching
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-12-05 08:45:10
+Date: 2019-12-05 18:09:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `admin_log`
+-- Table structure for admin_log
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_log`;
 CREATE TABLE `admin_log` (
@@ -59,7 +59,7 @@ INSERT INTO `admin_log` VALUES ('23', '1', '修改教师信息', 'admin/teacher/
 INSERT INTO `admin_log` VALUES ('24', '1', '添加教师信息', 'admin/teacher/add.html', 'POST', '::1', '1575379643');
 
 -- ----------------------------
--- Table structure for `admin_log_data`
+-- Table structure for admin_log_data
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_log_data`;
 CREATE TABLE `admin_log_data` (
@@ -98,7 +98,7 @@ INSERT INTO `admin_log_data` VALUES ('23', '23', 'cf68a235f+3coiEENOREbk0vHjFYkl
 INSERT INTO `admin_log_data` VALUES ('24', '24', 'b2270ff9tNVayL7LpHbD+BPx090Wm193+TfCjRzzbyhc0K9bwn9r4eR92a4aBYkY7pmuiEVm7q0atX0G2guyaylHs17VE1Xiv72tGeh1BVlY/fH/CT2wQoYy0W6y3Vay/J6vRbg8Z7MSEBK0ZGnhb00uc+tuLDNa0ErgUcpOUs/WtKBgzxoiCadfc13jlIC0FmfEPZJQ7sgs2Rf8uSxldyk+eQCZmYjHIlOZsvF4xUBhOKTtGA');
 
 -- ----------------------------
--- Table structure for `admin_menu`
+-- Table structure for admin_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_menu`;
 CREATE TABLE `admin_menu` (
@@ -112,7 +112,7 @@ CREATE TABLE `admin_menu` (
   `log_method` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '不记录' COMMENT '记录日志方法',
   PRIMARY KEY (`id`),
   KEY `index_url` (`url`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='后台菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='后台菜单';
 
 -- ----------------------------
 -- Records of admin_menu
@@ -192,9 +192,24 @@ INSERT INTO `admin_menu` VALUES ('82', '81', '教学视频信息', 'admin/video/
 INSERT INTO `admin_menu` VALUES ('83', '82', '添加教学视频', 'admin/video/add', 'fa-plus', '0', '1000', 'POST');
 INSERT INTO `admin_menu` VALUES ('84', '82', '修改教学视频', 'admin/video/edit', 'fa-pencil', '0', '1000', 'POST');
 INSERT INTO `admin_menu` VALUES ('85', '82', '删除教学视频', 'admin/video/del', 'fa-trash', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('86', '0', '教学资料管理', 'admin/material/index', 'fa-list', '1', '1000', '不记录');
+INSERT INTO `admin_menu` VALUES ('87', '86', '教学资料', 'admin/material/index', '', '1', '1000', '不记录');
+INSERT INTO `admin_menu` VALUES ('88', '87', '添加教学资料', 'admin/material/add', 'fa-plus', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('89', '87', '修改教学资料', 'admin/material/edit', 'fa-pencil', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('90', '87', '删除教学资料', 'admin/material/del', 'fa-trash', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('91', '0', '教学课件管理', 'admin/courseware/index', 'fa-list', '1', '1000', '不记录');
+INSERT INTO `admin_menu` VALUES ('92', '91', '教学课件', 'admin/courseware/index', '', '1', '1000', '不记录');
+INSERT INTO `admin_menu` VALUES ('93', '92', '添加教学课件', 'admin/courseware/add', 'fa-plus', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('94', '92', '修改教学课件', 'admin/courseware/edit', 'fa-pencil', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('95', '92', '删除教学课件', 'admin/courseware/del', 'fa-trash', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('96', '0', '教学试题管理', 'admin/question/index', 'fa-list', '1', '1000', '不记录');
+INSERT INTO `admin_menu` VALUES ('97', '96', '教学试题', 'admin/question/index', '', '1', '1000', '不记录');
+INSERT INTO `admin_menu` VALUES ('98', '97', '添加教学试题', 'admin/question/add', 'fa-plus', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('99', '97', '修改教学试题', 'admin/question/edit', 'fa-pencil', '0', '1000', 'POST');
+INSERT INTO `admin_menu` VALUES ('100', '97', '删除教学试题', 'admin/question/del', 'fa-trash', '0', '1000', 'POST');
 
 -- ----------------------------
--- Table structure for `admin_role`
+-- Table structure for admin_role
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role`;
 CREATE TABLE `admin_role` (
@@ -212,7 +227,7 @@ CREATE TABLE `admin_role` (
 INSERT INTO `admin_role` VALUES ('1', '管理员', '后台管理员角色', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48', '1');
 
 -- ----------------------------
--- Table structure for `admin_user`
+-- Table structure for admin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_user`;
 CREATE TABLE `admin_user` (
@@ -234,7 +249,7 @@ CREATE TABLE `admin_user` (
 INSERT INTO `admin_user` VALUES ('1', 'super_admin', 'JDJ5JDEwJDgvVjRmd1R3c1RmTkJVRVBYU0hKNnViZUs1TjkudGJRY013OHdMOTVYMFdDdjBrTG1DakF5', '超级管理员', '/static/admin/images/avatar.png', '1', '1', '0');
 
 -- ----------------------------
--- Table structure for `attachment`
+-- Table structure for attachment
 -- ----------------------------
 DROP TABLE IF EXISTS `attachment`;
 CREATE TABLE `attachment` (
@@ -261,7 +276,7 @@ CREATE TABLE `attachment` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `college`
+-- Table structure for college
 -- ----------------------------
 DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college` (
@@ -282,7 +297,27 @@ INSERT INTO `college` VALUES ('3', '绿色环保系', '1575341364', '1575341527'
 INSERT INTO `college` VALUES ('4', '财会算计系', '1575342353', '1575342359', '0');
 
 -- ----------------------------
--- Table structure for `department`
+-- Table structure for courseware
+-- ----------------------------
+DROP TABLE IF EXISTS `courseware`;
+CREATE TABLE `courseware` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '课件名称',
+  `type` int(11) NOT NULL COMMENT '课件类型',
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '课件路径',
+  `teacher_id` int(11) NOT NULL COMMENT '教师ID',
+  `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `delete_time` int(10) NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='教学课件信息表';
+
+-- ----------------------------
+-- Records of courseware
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for department
 -- ----------------------------
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
@@ -303,7 +338,27 @@ INSERT INTO `department` VALUES ('2', '教学部', '负责学院的教学等等'
 INSERT INTO `department` VALUES ('3', '管理部', '负责学院的管理等等', '1575342768', '1575342780', '0');
 
 -- ----------------------------
--- Table structure for `migrations`
+-- Table structure for material
+-- ----------------------------
+DROP TABLE IF EXISTS `material`;
+CREATE TABLE `material` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '资料名称',
+  `type` int(11) NOT NULL COMMENT '资料类型',
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '资料路径',
+  `teacher_id` int(11) NOT NULL COMMENT '教师ID',
+  `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `delete_time` int(10) NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='教学资料信息表';
+
+-- ----------------------------
+-- Records of material
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for migrations
 -- ----------------------------
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
@@ -331,7 +386,27 @@ INSERT INTO `migrations` VALUES ('20191001081340', 'SettingGroup', '2019-12-02 1
 INSERT INTO `migrations` VALUES ('20191012005355', 'Test', '2019-12-02 14:13:28', '2019-12-02 14:13:28', '0');
 
 -- ----------------------------
--- Table structure for `setting`
+-- Table structure for question
+-- ----------------------------
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '试题名称',
+  `type` int(11) NOT NULL COMMENT '试题类型',
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '试题路径',
+  `teacher_id` int(11) NOT NULL COMMENT '教师ID',
+  `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `delete_time` int(10) NOT NULL DEFAULT '0' COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='教学试题信息表';
+
+-- ----------------------------
+-- Records of question
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for setting
 -- ----------------------------
 DROP TABLE IF EXISTS `setting`;
 CREATE TABLE `setting` (
@@ -356,7 +431,7 @@ INSERT INTO `setting` VALUES ('2', '1', '登录设置', '后台登录相关设�
 INSERT INTO `setting` VALUES ('3', '1', '首页设置', '后台首页参数设置', 'index', '[{\"name\":\"\\u9ed8\\u8ba4\\u5bc6\\u7801\\u8b66\\u544a\",\"field\":\"password_warning\",\"type\":\"switch\",\"content\":\"1\",\"option\":\"\"},{\"name\":\"\\u662f\\u5426\\u663e\\u793a\\u63d0\\u793a\\u4fe1\\u606f\",\"field\":\"show_notice\",\"type\":\"switch\",\"content\":\"1\",\"option\":\"\"},{\"name\":\"\\u63d0\\u793a\\u4fe1\\u606f\\u5185\\u5bb9\",\"field\":\"notice_content\",\"type\":\"text\",\"content\":\"\\u6b22\\u8fce\\u6765\\u5230\\u4f7f\\u7528\\u672c\\u7cfb\\u7edf\\uff0c\\u5de6\\u4fa7\\u4e3a\\u83dc\\u5355\\u533a\\u57df\\uff0c\\u53f3\\u4fa7\\u4e3a\\u529f\\u80fd\\u533a\\u3002\",\"option\":\"\"}]', '1000', '1575267208', '1575267208', '0');
 
 -- ----------------------------
--- Table structure for `setting_group`
+-- Table structure for setting_group
 -- ----------------------------
 DROP TABLE IF EXISTS `setting_group`;
 CREATE TABLE `setting_group` (
@@ -381,7 +456,7 @@ CREATE TABLE `setting_group` (
 INSERT INTO `setting_group` VALUES ('1', 'admin', '后台设置', '后台管理方面的设置', 'admin', '1000', '1', '1', 'fa-adjust', '1575267208', '1575267208', '0');
 
 -- ----------------------------
--- Table structure for `teacher`
+-- Table structure for teacher
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
@@ -405,7 +480,7 @@ INSERT INTO `teacher` VALUES ('1', '张一方', '1', '13434119852', '10001', '1'
 INSERT INTO `teacher` VALUES ('2', '林志凌', '2', '13434118596', '10002', '4', '1', '1575379643', '1575379643', '0');
 
 -- ----------------------------
--- Table structure for `test`
+-- Table structure for test
 -- ----------------------------
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
@@ -428,7 +503,7 @@ CREATE TABLE `test` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `type`
+-- Table structure for type
 -- ----------------------------
 DROP TABLE IF EXISTS `type`;
 CREATE TABLE `type` (
@@ -447,7 +522,7 @@ INSERT INTO `type` VALUES ('1', 'PHP', '1575351305', '1575351319', '0');
 INSERT INTO `type` VALUES ('2', 'JAVA', '1575351325', '1575351325', '0');
 
 -- ----------------------------
--- Table structure for `user`
+-- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -474,7 +549,7 @@ INSERT INTO `user` VALUES ('3', '/uploads/attachment/20190822/f0a7cd43074283b428
 INSERT INTO `user` VALUES ('4', '/uploads/attachment/20190822/1771ce624eccb96aad992df540126d3b.png', '小女孩', '小女孩', '13638392923', '1', 'JDJ5JDEwJGh6QnBETDFWQ2hlRTJWekkyMkF4bU9aNGVZOWNUU0NFRloxcG5EZHF2aGZlL2VrdUQ4cVRT', '1', '1575267207', '1575267207', '0');
 
 -- ----------------------------
--- Table structure for `user_level`
+-- Table structure for user_level
 -- ----------------------------
 DROP TABLE IF EXISTS `user_level`;
 CREATE TABLE `user_level` (
@@ -498,20 +573,20 @@ INSERT INTO `user_level` VALUES ('3', '白银会员', '白银会员', '/uploads/
 INSERT INTO `user_level` VALUES ('4', '黄金会员', '黄金会员', '/uploads/attachment/20190822/6dcc15ea1701c449e63e6856f0931e2a.png', '1', '1575267208', '1575267208', '0');
 
 -- ----------------------------
--- Table structure for `video`
+-- Table structure for video
 -- ----------------------------
 DROP TABLE IF EXISTS `video`;
 CREATE TABLE `video` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '视频名称',
   `type` int(11) NOT NULL COMMENT '资源类型',
-  `path` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '视频路径',
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '视频路径',
   `teacher_id` int(11) NOT NULL COMMENT '教师ID',
   `create_time` int(10) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
   `delete_time` int(10) NOT NULL DEFAULT '0' COMMENT '删除时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='视频信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='教学视频信息表';
 
 -- ----------------------------
 -- Records of video
