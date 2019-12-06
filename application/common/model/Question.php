@@ -1,7 +1,7 @@
 <?php
 /**
- * 试题信息模型
- */
+ * 教学试题信息模型
+*/
 
 namespace app\common\model;
 

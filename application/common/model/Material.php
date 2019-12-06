@@ -1,7 +1,7 @@
 <?php
 /**
- * 资料信息模型
- */
+ * 教学资料信息模型
+*/
 
 namespace app\common\model;
 
