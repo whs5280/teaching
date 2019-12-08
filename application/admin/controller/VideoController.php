@@ -5,7 +5,10 @@
 
 namespace app\admin\controller;
 
+use app\common\model\Attachment;
 use app\common\model\Type;
+use think\Db;
+use think\facade\Session;
 use think\Request;
 use app\common\model\Video;
 
@@ -23,6 +26,10 @@ class VideoController extends Controller
         $data = $model->paginate($this->admin['per_page'], false, ['query'=>$request->get()]);
         //关键词，排序等赋值
         $this->assign($request->get());
+
+        foreach ($data as &$item) {
+            $item['type_name'] = Db::name('type')->where('id', $item['type'])->value('name');
+        }
 
         $this->assign([
             'data'  => $data,
@@ -42,7 +49,20 @@ class VideoController extends Controller
             if (!$validate_result) {
                 return error($validate->getError());
             }
-            
+
+            //处理视频上传
+            $attachment_video = new Attachment();
+            $file_video       = $attachment_video->upload('path','video/');
+
+            if ($file_video) {
+                $param['path'] = $file_video->url;
+            } else {
+                return error($attachment_video->getError());
+            }
+
+            //上传教师的ID
+            $param['teacher_id'] = Session::get('user')['id'];
+
             $result = $model::create($param);
 
             $url = URL_BACK;
@@ -74,6 +94,16 @@ class VideoController extends Controller
             $validate_result = $validate->scene('edit')->check($param);
             if (!$validate_result) {
                 return error($validate->getError());
+            }
+
+            //处理视频上传
+            $attachment_video = new Attachment();
+            $file_video       = $attachment_video->upload('path','video/');
+
+            if ($file_video) {
+                $param['path'] = $file_video->url;
+            } else {
+                return error($attachment_video->getError());
             }
             
             $result = $data->save($param);

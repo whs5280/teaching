@@ -5,9 +5,12 @@
 
 namespace app\admin\controller;
 
+use app\common\model\Attachment;
+use app\common\model\Type;
+use think\Db;
+use think\facade\Session;
 use think\Request;
 use app\common\model\Material;
-
 use app\common\validate\MaterialValidate;
 
 class MaterialController extends Controller
@@ -22,6 +25,11 @@ class MaterialController extends Controller
         $data = $model->paginate($this->admin['per_page'], false, ['query'=>$request->get()]);
         //关键词，排序等赋值
         $this->assign($request->get());
+
+        foreach ($data as &$item) {
+            $item['type_name'] = Db::name('type')->where('id', $item['type'])->value('name');
+            $item['teacher_name'] = Db::name('admin_user')->where('id', $item['teacher_id'])->value('nickname');
+        }
 
         $this->assign([
             'data'  => $data,
@@ -41,7 +49,20 @@ class MaterialController extends Controller
             if (!$validate_result) {
                 return error($validate->getError());
             }
-            
+
+            //处理资料上传
+            $attachment = new Attachment();
+            $file_       = $attachment->upload('path','material/');
+
+            if ($file_) {
+                $param['path'] = $file_->url;
+            } else {
+                return error($attachment->getError());
+            }
+
+            //上传教师的ID
+            $param['teacher_id'] = Session::get('user')['id'];
+
             $result = $model::create($param);
 
             $url = URL_BACK;
@@ -52,7 +73,13 @@ class MaterialController extends Controller
             return $result ? success('添加成功',$url) : error();
         }
 
-        
+        $typeModel = new Type();
+        $type_info = $typeModel->getAll();
+
+        $this->assign([
+            'type_info'  => $type_info,
+
+        ]);
 
         return $this->fetch();
     }
@@ -68,16 +95,30 @@ class MaterialController extends Controller
             if (!$validate_result) {
                 return error($validate->getError());
             }
-            
+
+            //处理资料上传
+            $attachment = new Attachment();
+            $file_       = $attachment->upload('path','material/');
+
+            if ($file_) {
+                $param['path'] = $file_->url;
+            } else {
+                return error($attachment->getError());
+            }
+
             $result = $data->save($param);
             return $result ? success() : error();
         }
 
+        $typeModel = new Type();
+        $type_info = $typeModel->getAll();
+
         $this->assign([
             'data' => $data,
-            
+            'type_info'  => $type_info,
+
         ]);
-        return $this->fetch('add');
+        return $this->fetch();
 
     }
 

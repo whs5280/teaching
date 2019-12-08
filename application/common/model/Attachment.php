@@ -20,7 +20,8 @@ class Attachment extends Model
         '文档'   => ['txt', 'doc', 'docx', 'xls', 'xlsx', 'pdf'],
         '压缩文件' => ['rar', 'zip', '7z', 'tar'],
         '音视'   => ['mp3', 'ogg', 'flac', 'wma', 'ape'],
-        '视频'   => ['mp4', 'wmv', 'avi', 'rmvb', 'mov', 'mpg']
+        '视频'   => ['mp4', 'wmv', 'avi', 'rmvb', 'mov', 'mpg'],
+        //'课件'   => ['ppt', 'pptx']
     ];
 
     protected $fileThumb = [
@@ -31,7 +32,8 @@ class Attachment extends Model
         'excel.svg'    => ['xls', 'xlsx'],
         'archives.svg' => ['rar', 'zip', '7z', 'tar'],
         'audio.svg'    => ['mp3', 'ogg', 'flac', 'wma', 'ape'],
-        'video.svg'    => ['mp4', 'wmv', 'avi', 'rmvb', 'mov', 'mpg']
+        'video.svg'    => ['mp4', 'wmv', 'avi', 'rmvb', 'mov', 'mpg'],
+        //'ppt.svg'      => ['ppt', 'pptx'],
     ];
 
     protected function initialize()
@@ -45,7 +47,8 @@ class Attachment extends Model
             $thumb_path . 'excel.svg'    => ['xls', 'xlsx'],
             $thumb_path . 'archives.svg' => ['rar', 'zip', '7z', 'tar'],
             $thumb_path . 'audio.svg'    => ['mp3', 'ogg', 'flac', 'wma', 'ape'],
-            $thumb_path . 'video.svg'    => ['mp4', 'wmv', 'avi', 'rmvb', 'mov', 'mpg']
+            $thumb_path . 'video.svg'    => ['mp4', 'wmv', 'avi', 'rmvb', 'mov', 'mpg'],
+            //$thumb_path . 'ppt.svg'      => ['ppt', 'pptx'],
         ];
         parent::initialize();
     }

@@ -20,27 +20,28 @@
                     <!-- 表单字段区域 -->
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">视频名称</label>
+                            <label for="name" class="col-sm-2 control-label">试题名称</label>
                             <div class="col-sm-10 col-md-4">
-                                <input id="name" name="name" value="{$data.name|default=''}" placeholder="请输入视频名称"
+                                <input id="name" name="name" value="{$data.name|default=''}" placeholder="请输入试题名称"
                                        type="text" class="form-control field-text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="type" class="col-sm-2 control-label">资源类型</label>
+                            <label for="type" class="col-sm-2 control-label">试题类型</label>
                             <div class="col-sm-10 col-md-4">
                                 <select id="type" name="type" class="form-control">
                                     {foreach name='type_info' id='item' key='data_key'}
-                                    <option value="{$item.id}">{$item.name}</option>
+                                    <option value="{$item.id}" {if $item.id==$data.type} selected{/if}>{$item.name}</option>
                                     {/foreach}
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="path" class="col-sm-2 control-label">视频上传</label>
+                            <label for="path" class="col-sm-2 control-label">试题路径</label>
                             <div class="col-sm-10 col-md-4">
-                                <input id="path" name="path" placeholder="请上传视频上传" data-initial-preview="{$data.path|default=''}" type="file" class="form-control field-file" >
+                                <input id="path" name="path" placeholder="请上传教学试题" data-initial-preview="{$data.path|default=''}" type="file" class="form-control field-file" >
                             </div>
+                            <small>仅支持'doc','docx','pdf','zip','rar'文件</small>
                         </div>
                         <script>
                             $('#path').fileinput({
@@ -50,10 +51,9 @@
                                 dropZoneEnabled: false,
                                 showUpload:false,
                                 showRemove: false,
-                                allowedFileExtensions : ["mp4","avi","dat","3gp","mov","rmvb","flv"],
-                                //allowedFileExtensions: ['jpg', 'png', 'gif','bmp','svg','jpeg','mp4','doc','docx','pdf','xls','xlsx','ppt','pptx','txt'],
-                                //默认限制150M
-                                maxFileSize:153600
+                                allowedFileExtensions: ['doc','docx','pdf','zip','rar'],
+                                //默认限制15M
+                                maxFileSize:15360
                             });
                         </script>
 
@@ -95,10 +95,10 @@
         },
         messages: {
             'name': {
-                required: "视频名称不能为空",
+                required: "试题名称不能为空",
             },
             'type': {
-                required: "资源类型不能为空",
+                required: "试题类型不能为空",
             },
 
         }

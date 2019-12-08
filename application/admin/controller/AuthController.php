@@ -8,6 +8,7 @@ namespace app\admin\controller;
 
 use Exception;
 use think\captcha\Captcha;
+use think\facade\Session;
 use think\Request;
 use app\admin\model\AdminUser;
 use app\admin\validate\AdminUserValidate;
@@ -88,6 +89,9 @@ class AuthController extends Controller
             self::authLogin($user, $remember);
 
             $redirect = session('redirect') ?? url('admin/index/index');
+
+            // 登录账号记录缓存
+            Session::set('user', $user);
 
             return success('登录成功', $redirect);
         }

@@ -67,6 +67,7 @@
                             <th>视频名称</th>
                             <th>资源类型</th>
                             <th>视频路径</th>
+                            <th>教师ID</th>
                             <th>创建时间</th>
 
                             <th>操作</th>
@@ -83,7 +84,10 @@
                             <td>{$item.id}</td>
                             <td>{$item.name}</td>
                             <td>{$item.type}</td>
-                            <td>{$item.path}</td>
+                            <td>
+                                ****
+                            </td>
+                            <td>{$item.teacher_id}</td>
                             <td>{$item.create_time}</td>
 
                             <td class="td-do">
@@ -105,6 +109,38 @@
                         {/foreach}
                         </tbody>
                     </table>
+
+                    {foreach name='data' id='item' key='data_key'}
+                    <li class="col-lg-4">
+                        <a href="#" class="thumbnail">
+                            <h5>名称：{$item.name}</h5>
+                            <p>类别：{$item.type_name}</p>
+                            <p>上传时间：{$item.create_time}</p>
+                            <p>
+                                {if $item.path=='0'}
+                                <span>暂无视频地址...</span>
+                                {else/}
+                                <video src="{$item.path}" controls="controls" width="400" height="400" style="margin-top: -80px;"><!--poster="xx.png"-->
+                                    您的浏览器不支持 video 标签。
+                                </video>
+                                {/if}
+                            </p>
+                        </a>
+                        <div class="actions">
+                            <a href="{:url('edit',['id'=>$item.id])}"
+                               class="btn btn-primary btn-xs" title="修改" data-toggle="tooltip">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="btn btn-danger btn-xs AjaxButton" data-toggle="tooltip" title="删除"
+                               data-id="{$item.id}" data-confirm-title="删除确认"
+                               data-confirm-content='您确定要删除ID为 <span class="text-red">{$item.id}</span> 的数据吗'
+                               data-url="{:url('del')}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </li>
+                    {/foreach}
+
                 </div>
 
                 <!-- 数据列表底部 -->

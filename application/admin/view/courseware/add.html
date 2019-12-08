@@ -15,39 +15,47 @@
                     </div>
                 </div>
                 <!-- 表单 -->
-                <form id="dataForm" class="form-horizontal dataForm" action="" method="post" enctype="multipart/form-data">
+                <form id="dataForm" class="form-horizontal dataForm" action="" method="post"
+                      enctype="multipart/form-data">
                     <!-- 表单字段区域 -->
                     <div class="box-body">
                         <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">课件名称</label>
-    <div class="col-sm-10 col-md-4">
-        <input id="name" name="name" value="{$data.name|default=''}" placeholder="请输入课件名称" type="text" class="form-control field-text">
-    </div>
-</div>
-<div class="form-group">
-    <label for="type" class="col-sm-2 control-label">课件类型</label>
-    <div class="col-sm-10 col-md-4">
-        <input id="type" name="type" value="{$data.type|default=''}" placeholder="请输入课件类型" type="text" class="form-control field-text">
-    </div>
-</div>
-<div class="form-group">
-    <label for="path" class="col-sm-2 control-label">课件路径</label>
-    <div class="col-sm-10 col-md-4">
-        <input id="path" name="path" value="{$data.path|default=''}" placeholder="请输入课件路径" type="text" class="form-control field-text">
-    </div>
-</div>
-<div class="form-group">
-    <label for="teacher_id" class="col-sm-2 control-label">教师ID</label>
-    <div class="col-sm-10 col-md-4">
-        <select name="teacher_id" id="teacher_id" class="form-control field-select" data-placeholder="请选择教师ID">
-            <option value=""></option>
-            
-        </select>
-    </div>
-</div>
-<script>
- $('#teacher_id').select2();
-</script>
+                            <label for="name" class="col-sm-2 control-label">课件名称</label>
+                            <div class="col-sm-10 col-md-4">
+                                <input id="name" name="name" value="{$data.name|default=''}" placeholder="请输入课件名称"
+                                       type="text" class="form-control field-text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">课件类型</label>
+                            <div class="col-sm-10 col-md-4">
+                                <select id="type" name="type" class="form-control">
+                                    {foreach name='type_info' id='item' key='data_key'}
+                                    <option value="{$item.id}">{$item.name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="path" class="col-sm-2 control-label">课件路径</label>
+                            <div class="col-sm-10 col-md-4">
+                                <input id="path" name="path" placeholder="请上传教学课件" data-initial-preview="{$data.path|default=''}" type="file" class="form-control field-file" >
+                            </div>
+                            <small>仅支持'ppt','pptx','pdf'文件</small>
+                        </div>
+                        <script>
+                            $('#path').fileinput({
+                                language: 'zh',
+                                browseLabel: '浏览',
+                                initialPreviewAsData: true,
+                                dropZoneEnabled: false,
+                                showUpload:false,
+                                showRemove: false,
+                                allowedFileExtensions: ['ppt','pptx','pdf'],
+                                //默认限制15M
+                                maxFileSize:15360
+                            });
+                        </script>
 
                     </div>
                     <!-- 表单底部 -->
@@ -56,13 +64,6 @@
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-10 col-md-4">
-                            {if !isset($data)}
-                                <div class="btn-group pull-right">
-                                    <label class="createContinue">
-                                        <input type="checkbox" value="1" id="_create" name="_create"
-                                                                   title="继续添加数据">继续添加</label>
-                                </div>
-                             {/if}
                             <div class="btn-group">
                                 <button type="submit" class="btn flat btn-info dataFormSubmit">
                                     保存
@@ -84,33 +85,21 @@
     /** 表单验证 **/
     $('#dataForm').validate({
         rules: {
-                'name': {
-        required: true,
-    },
-    'type': {
-        required: true,
-    },
-    'path': {
-        required: true,
-    },
-    'teacher_id': {
-        required: true,
-    },
+            'name': {
+                required: true,
+            },
+            'type': {
+                required: true,
+            },
 
         },
         messages: {
-                'name': {
-        required: "课件名称不能为空",
-    },
-    'type': {
-        required: "课件类型不能为空",
-    },
-    'path': {
-        required: "课件路径不能为空",
-    },
-    'teacher_id': {
-        required: "教师ID不能为空",
-    },
+            'name': {
+                required: "课件名称不能为空",
+            },
+            'type': {
+                required: "课件类型不能为空",
+            },
 
         }
     });
